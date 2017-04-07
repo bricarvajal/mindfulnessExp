@@ -19,7 +19,7 @@ numSeq = round(maxNum*rand(numTrials, numDig));
 responses = nan(size(numSeq));
 
 %% Store parameters
-param.seqDur = seqDur;
+param.seqDur = seqDur/numDig;
 param.iti = iti;
 param.numBlocks = numBlocks;
 param.exp_ibi = exp_ibi;

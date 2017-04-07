@@ -1,7 +1,7 @@
 % Mindfulness Number Sequence Task Experiment
 function Mindfulness_Memory_Task_Exp(subj, run)
 
-load(['MMT_Seq' run])
+load(['MMT_Seq' num2str(run)])
 subjGroup = ''; %Options: 'experimental' 'control'
 
 switch subjGroup
@@ -46,17 +46,26 @@ respText = 'Enter the sequence.';
 Screen('TextSize', window, 80);
 Screen('TextFont', window, 'Courier');
 
-for trial = 1:length(numSeq)
-    % Draw number sequence
-    DrawFormattedText(window, numSeq(trial,:), 'center', 'center', black);
-    % Flip to the screen
-    Screen('Flip', window);
-    pause(param.seqDur);
-    DrawFormattedText(window, respText, 'center', 'center', black);
-    [keyIsDown, secs, keyCode, deltaSecs] = KbCheck([deviceNumber]);
-    Screen('Flip', window);
-    response = 0;
-    responses(trial) = response;
+for iTrial = 1:length(trials.numSeq)
+    for iNum = 1:param.numDig
+        curr_num = num2str(trials.numSeq(iTrial,iNum));
+        % Draw number sequence
+        DrawFormattedText(window, curr_num, 'center', 'center', black);
+        % Flip to the screen
+        Screen('Flip', window);
+        pause(param.seqDur);      
+    end
+    if iNum == param.numDig
+        DrawFormattedText(window, respText, 'center', 'center', black);
+    %     [keyIsDown, secs, keyCode, deltaSecs] = KbCheck([deviceNumber]);
+        Screen('Flip', window);
+        pause(1);
+        response = 0;
+        trials.responses(iTrial,:) = response;
+    end
 end
 
-save(['MMT_' num2str(subj)], responses)
+save(['MMT_' num2str(subj)])
+
+KbStrokeWait;
+sca;
