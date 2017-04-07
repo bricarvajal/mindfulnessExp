@@ -1,7 +1,7 @@
 % Mindfulness Number Sequence Task Experiment
 function Mindfulness_Memory_Task_Exp(subj, run)
 
-load(['MMT_Seq' num2str(run)])
+load(['stimuli/MMT_Seq' num2str(run)])
 subjGroup = ''; %Options: 'experimental' 'control'
 
 switch subjGroup
@@ -40,15 +40,18 @@ Screen('BlendFunction', window, 'GL_SRC_ALPHA', 'GL_ONE_MINUS_SRC_ALPHA');
 [xCenter, yCenter] = RectCenter(windowRect);
 
 % Reponse statement
-respText = 'Enter the sequence.';
+respText = 'Enter the sequence.\n Press ENTER/RETURN when done.';
+endText = 'All done, \n thank you for your participation.\n Press any key to exit.';
+retryText = ['You did not enter ' num2str(param.numDig) '.\n Please enter '...
+    num2str(param.numDig)  ' digits.'];
 
 % Draw text in the middle of the screen in Courier in white
 Screen('TextSize', window, 80);
 Screen('TextFont', window, 'Courier');
 
-for iTrial = 1:length(trials.numSeq)
+for iTrial = 1:param.numTrials
     for iNum = 1:param.numDig
-        curr_num = num2str(trials.numSeq(iTrial,iNum));
+        curr_num = num2str(trials.numSeq(iTrial, iNum));
         % Draw number sequence
         DrawFormattedText(window, curr_num, 'center', 'center', black);
         % Flip to the screen
@@ -57,15 +60,23 @@ for iTrial = 1:length(trials.numSeq)
     end
     if iNum == param.numDig
         DrawFormattedText(window, respText, 'center', 'center', black);
-    %     [keyIsDown, secs, keyCode, deltaSecs] = KbCheck([deviceNumber]);
+    %   [keyIsDown, secs, keyCode, deltaSecs] = KbCheck([deviceNumber]);
         Screen('Flip', window);
-        pause(1);
-        response = 0;
+        response = input('user input: ', 's');
+        response = response - '0';
+        while length(response) ~= param.numDig
+            DrawFormattedText(window, retryText, 'center', 'center', black);
+            Screen('Flip', window);
+            response = input('retry user input: ', 's');
+            response = response - '0';
+        end
         trials.responses(iTrial,:) = response;
     end
 end
 
-save(['MMT_' num2str(subj)])
+save(['MMT_' num2str(subj) '_' num2str(run)], 'trials', 'param')
 
+DrawFormattedText(window, endText, 'center', 'center', black);
+Screen('Flip', window);
 KbStrokeWait;
 sca;
