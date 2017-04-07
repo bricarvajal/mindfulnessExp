@@ -15,6 +15,7 @@ for iTrial = 1:param.numTrials
         matCorrect(iTrial, iNum) = correct;
     end
 end
+
 data.matCorrect = matCorrect;
 
 sumCorrect = sum(matCorrect,2);

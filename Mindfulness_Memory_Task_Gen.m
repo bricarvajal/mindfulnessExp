@@ -16,7 +16,7 @@ maxNum = 9; %max digit possible to be displayed
 
 %% Generate sequences
 numSeq = round(maxNum*rand(numTrials, numDig));
-responses = nan(numTrials,numDig);
+% responses = nan(numTrials,numDig);
 
 %% Store parameters
 param.seqDur = seqDur/numDig;
@@ -28,6 +28,7 @@ param.trialsPerBlock = trialsPerBlock;
 param.numTrials = numTrials;
 param.numDig = numDig;
 param.maxNum = maxNum;
+
 %% Store trial info
 trials.numSeq = numSeq;
 

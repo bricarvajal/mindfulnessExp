@@ -46,7 +46,7 @@ retryText = ['You did not enter ' num2str(param.numDig) '.\n Please enter '...
     num2str(param.numDig)  ' digits.'];
 
 % Draw text in the middle of the screen in Courier in white
-Screen('TextSize', window, 80);
+Screen('TextSize', window, 50);
 Screen('TextFont', window, 'Courier');
 
 for iTrial = 1:param.numTrials
@@ -80,3 +80,4 @@ DrawFormattedText(window, endText, 'center', 'center', black);
 Screen('Flip', window);
 KbStrokeWait;
 sca;
+
