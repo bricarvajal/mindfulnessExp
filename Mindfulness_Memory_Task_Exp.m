@@ -6,8 +6,13 @@ subjGroup = ''; %Options: 'experimental' 'control'
 
 switch subjGroup
     case 'experimental'
+        % loads audio, 10 minute mindfulness audio (black screen)
+        InitializePsychSound(1)
+        PsychPortAduio('Open', [], [], 2, [], 1)
         
     case 'control'
+        % no audio; 10 minute block
+        
 end
 
 % Here we call some default settings for setting up Psychtoolbox
