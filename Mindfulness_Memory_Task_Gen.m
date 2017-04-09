@@ -4,13 +4,18 @@ function Mindfulness_Memory_Task_Gen(run)
 % Create sequence and experimental parameters.
 
 %% Set parameters
+
+% Timing
 seqDur = 6; %seconds the sequence is displayed
 iti = 3; %inter-trial interval (seconds)
-numBlocks = 2; %number of blocks
-exp_ibi = 10; %inter-block interval (minutes) mindfulness group training
-ctrl_ibi = 5; %inter-block interval (minutes) control group break
-trialsPerBlock = 5; %number of trials per block
+ibi = 10; % time between blocks
+
+% Trials
+trialsPerBlock = 10; %number of trials per block
+numBlocks = 1; %number of blocks
 numTrials = numBlocks*trialsPerBlock; %total number of trials
+
+% Sequence Numbers
 numDig = 6; %number of digits in a sequence
 maxNum = 9; %max digit possible to be displayed
 
@@ -20,14 +25,12 @@ numSeq = round(maxNum*rand(numTrials, numDig));
 
 %% Store parameters
 param.seqDur = seqDur/numDig;
-param.iti = iti;
 param.numBlocks = numBlocks;
-param.exp_ibi = exp_ibi;
-param.con_ibi = ctrl_ibi;
+param.numDig = numDig;
+param.ibi = ibi;
 param.trialsPerBlock = trialsPerBlock;
 param.numTrials = numTrials;
-param.numDig = numDig;
-param.maxNum = maxNum;
+
 
 %% Store trial info
 trials.numSeq = numSeq;

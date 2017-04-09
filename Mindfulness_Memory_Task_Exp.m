@@ -7,8 +7,11 @@ subjGroup = ''; %Options: 'experimental' 'control'
 switch subjGroup
     case 'experimental'
         % loads audio, 10 minute mindfulness audio (black screen)
+        audioFileName = 'audiofile';
+        [y,Fs] = audioread(audioFileName);
         InitializePsychSound(1)
-        PsychPortAduio('Open', [], [], 2, [], 1)
+        PsychPortAduio('Open', [], [], 2, Fs, 1)
+        
         
     case 'control'
         % no audio; 10 minute block
