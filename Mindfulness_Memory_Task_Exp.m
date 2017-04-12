@@ -82,7 +82,7 @@ for iTrial = 1:param.numTrials
     end
 end
 
-save(['MMT_' num2str(subj) '_' num2str(run)], 'trials', 'param')
+save(['data/MMT_' num2str(subj) '_' num2str(run)], 'trials', 'param')
 
 DrawFormattedText(window, endText, 'center', 'center', black);
 Screen('Flip', window);

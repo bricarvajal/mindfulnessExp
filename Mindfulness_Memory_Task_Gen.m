@@ -36,4 +36,4 @@ param.numTrials = numTrials;
 trials.numSeq = numSeq;
 
 %% Save sequences
-save(['MMT_Seq' num2str(run)], 'trials', 'param')
+save(['stimuli/MMT_Seq' num2str(run)], 'trials', 'param')

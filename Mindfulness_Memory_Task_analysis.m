@@ -26,5 +26,5 @@ data.percCorrectPerTrial = percCorrectPerTrial;
 perCorrectExp = mean(percCorrectPerTrial);
 data.perCorrectExp = perCorrectExp;
 
-save(['MMT_' num2str(subj) '_' num2str(run) '_data'], 'trials', 'param', 'data')
+save(['analysis/MMT_' num2str(subj) '_' num2str(run) '_data'], 'trials', 'param', 'data')
 
