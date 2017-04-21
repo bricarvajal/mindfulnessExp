@@ -3,7 +3,7 @@ function Mindfulness_Memory_Task_Exp(subj, run)
 
 %% Initialization of Files
 load(['stimuli/MMT_Seq' num2str(run)])
-subjGroup = 'control'; %Options: 'experimental' 'control'
+subjGroup = 'experimental'; %Options: 'experimental' 'control'
 param.subjGroup = subjGroup;
 
 % Change subject's group here
@@ -71,7 +71,7 @@ Screen('TextFont', window, 'Arial');
 
 %% Welcome screen
 
-welcomeSecs = 15; % (s) How long the welcome screen is up.
+welcomeSecs = 5; %(s) How long the welcome screen is up. testing: 5 exp: 15
 for n = 1:welcomeSecs
     welcomeText = ['Welcome to the experiment.\n Each trial you will be presented a sequence of numbers.\n When prompted, enter the sequence of numbers you were presented.\n The session will begin in ' num2str(welcomeSecs) ' seconds.'];
     DrawFormattedText(window, welcomeText, 'center', 'center', black);
@@ -86,7 +86,7 @@ Screen('Flip', window);
 pause(2)
 
 % Next block screen
-nextText = 'The next block will begin shortly.';
+nextText = 'The next block of trials will begin shortly.';
 
 
 %% TRIAL STARTS HERE
@@ -102,13 +102,13 @@ for iBlock = 1:param.numBlocks
                 % timestamp.
                 DrawFormattedText(window, audioText, 'center', 'center', black);
                 Screen('Flip', window);
-                pause(4);
-                Screen('FillRect',window, grey)
-                Screen('Flip', window);
+%                 pause(4);
+%                 Screen('FillRect',window, grey)
+%                 Screen('Flip', window);
                 t1 = PsychPortAudio('Start', pahandle, 0, 0, 1);
                 while timer > 0
-                    DrawFormattedText(window, timer, 'center', 'center', black);
-                    Screen('Flip', window);
+%                     DrawFormattedText(window, num2str(round(timer), 'center', 'center', black);
+%                     Screen('Flip', window);
                     pause(1)
                     timer = timer - 1;
                 end
@@ -119,13 +119,13 @@ for iBlock = 1:param.numBlocks
                 % timestamp.
                 DrawFormattedText(window, audioText, 'center', 'center', black);
                 Screen('Flip', window);
-                pause(4);
-                Screen('FillRect',window, grey)
-                Screen('Flip', window);
+%                 pause(4);
+%                 Screen('FillRect',window, grey)
+%                 Screen('Flip', window);
                 t1 = PsychPortAudio('Start', pahandle, 0, 0, 1);
                 while timer > 0
-                    DrawFormattedText(window, timer, 'center', 'center', black);
-                    Screen('Flip', window);
+%                     DrawFormattedText(window, num2str(round(timer)), 'center', 'center', black);
+%                     Screen('Flip', window);
                     pause(1)
                     timer = timer - 1;
                 end
