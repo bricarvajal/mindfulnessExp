@@ -82,7 +82,7 @@ for iBlock = 1:param.numBlocks
         %   [keyIsDown, secs, keyCode, deltaSecs] = KbCheck([deviceNumber]);
             Screen('Flip', window);
             response = input('user input: ', 's');
-            response = response - '0';
+             response = response - '0';
             while length(response) ~= param.numDig
                 DrawFormattedText(window, retryText, 'center', 'center', black);
                 Screen('Flip', window);
