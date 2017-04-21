@@ -1,9 +1,12 @@
 % Mindfulness Number Sequence Task Experiment
 function Mindfulness_Memory_Task_Exp(subj, run)
 
+%% Initialization of Files
 load(['stimuli/MMT_Seq' num2str(run)])
 subjGroup = 'control'; %Options: 'experimental' 'control'
+param.subjGroup = subjGroup;
 
+% Change subject's group here
 switch subjGroup
     case 'experimental'
         % loads audio, 10 minute mindfulness audio (black screen)
@@ -14,7 +17,7 @@ switch subjGroup
         audioText = 'Please listen to the following audio.';
 end
 
-% Initialize Audio
+%% Initialize Audio
 InitializePsychSound;
 [y, freq] = psychwavread(wavfilename);
 wavedata = y';
@@ -25,6 +28,7 @@ soundAmp = 1;
 PsychPortAudio('FillBuffer', pahandle, wavedata);
 timer = param.ibi*60; %(s)
 
+%% Initialize Screens
 % Here we call some default settings for setting up Psychtoolbox
 PsychDefaultSetup(2);
 
@@ -54,19 +58,20 @@ Screen('BlendFunction', window, 'GL_SRC_ALPHA', 'GL_ONE_MINUS_SRC_ALPHA');
 % For help see: help RectCenter
 [xCenter, yCenter] = RectCenter(windowRect);
 
-
+%% Texts
 % Reponse statement
 respText = 'Enter the sequence.\n Press ENTER/RETURN when done.';
 endText = 'All done, \n thank you for your participation.\n Press any key to exit.';
 retryText = ['You did not enter ' num2str(param.numDig) '.\n Please enter '...
     num2str(param.numDig)  ' digits.'];
 
-% Draw text in the middle of the screen
+% Text size and font
 Screen('TextSize', window, 30);
 Screen('TextFont', window, 'Arial');
 
-% Welcome screen
-welcomeSecs = 15;
+%% Welcome screen
+
+welcomeSecs = 15; % (s) How long the welcome screen is up.
 for n = 1:welcomeSecs
     welcomeText = ['Welcome to the experiment.\n Each trial you will be presented a sequence of numbers.\n When prompted, enter the sequence of numbers you were presented.\n The session will begin in ' num2str(welcomeSecs) ' seconds.'];
     DrawFormattedText(window, welcomeText, 'center', 'center', black);
@@ -85,7 +90,7 @@ nextText = 'The next block will begin shortly.';
 
 
 %% TRIAL STARTS HERE
-currTrial = 1; %initialize trials complete
+currTrial = 1; %initialize trials completed
 for iBlock = 1:param.numBlocks
     
     %after 1st block is complete run the 10min training or break
@@ -174,7 +179,9 @@ for iBlock = 1:param.numBlocks
         end
     end
 end
-param.subjGroup = subjGroup;
+
+%% Saving responses
+
 save(['data/MMT_' num2str(subj) '_' num2str(run)], 'trials', 'param')
 
 DrawFormattedText(window, endText, 'center', 'center', black);
