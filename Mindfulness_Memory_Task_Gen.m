@@ -18,11 +18,12 @@ numTrials = numBlocks*trialsPerBlock; %total number of trials
 % Sequence Numbers
 numDig = 6; %number of digits in a sequence
 maxNum = 9; %max digit possible to be displayed
-
 %% Generate sequences
-numSeq = round(maxNum*rand(numTrials, numDig));
-% responses = nan(numTrials,numDig);
 
+for n = 1:numTrials
+    curr_numSeq = randperm(maxNum, numDig);
+    numSeq(n,:) = curr_numSeq;
+end
 %% Store parameters
 param.seqDur = seqDur/numDig;
 param.numBlocks = numBlocks;
@@ -31,7 +32,6 @@ param.iti = iti;
 param.ibi = ibi;
 param.trialsPerBlock = trialsPerBlock;
 param.numTrials = numTrials;
-
 
 %% Store trial info
 trials.numSeq = numSeq;
