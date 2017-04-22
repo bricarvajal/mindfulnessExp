@@ -3,7 +3,7 @@ function Mindfulness_Memory_Task_Exp(subj, run)
 
 %% Initialization of Files
 load(['stimuli/MMT_Seq' num2str(run)])
-subjGroup = 'control'; %Options: 'experimental' 'control'
+subjGroup = 'experimental'; %Options: 'experimental' 'control'
 param.subjGroup = subjGroup;
 
 % Change subject's group here
@@ -66,7 +66,7 @@ retryText = ['You did not enter ' num2str(param.numDig) '.\n Please enter '...
     num2str(param.numDig)  ' digits.'];
 
 % Text size and font
-Screen('TextSize', window, 30);
+Screen('TextSize', window, 44);
 Screen('TextFont', window, 'Arial');
 
 %% Welcome screen
