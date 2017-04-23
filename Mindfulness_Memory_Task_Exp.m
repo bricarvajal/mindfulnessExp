@@ -3,7 +3,7 @@ function Mindfulness_Memory_Task_Exp(subj, run)
 
 %% Initialization of Files
 load(['stimuli/MMT_Seq' num2str(run)])
-subjGroup = 'experimental'; %Options: 'experimental' 'control'
+subjGroup = 'control'; %Options: 'experimental' 'control'
 param.subjGroup = subjGroup;
 
 % Change subject's group here
@@ -13,7 +13,7 @@ switch subjGroup
         wavfilename = 'stimuli/DW_Breath_Sound_Body_Meditation.wav';
         audioText = 'Please listen to the following meditation audio.';
     case 'control'
-        wavfilename = 'stimuli/MarkBittmanTEDTalkClip.wav';
+        wavfilename = 'stimuli/Pharmacology10min.wav'; %MarkBittmanTEDTalkClip
         audioText = 'Please listen to the following audio.';
 end
 
