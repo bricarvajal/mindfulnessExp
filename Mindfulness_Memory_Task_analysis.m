@@ -1,18 +1,21 @@
 % Mindfulness Memory Task Analysis
 function Mindfulness_Memory_Task_analysis(subj, run)
 
-load(['data/MMT_' num2str(subj) '_' num2str(run)])
+load(['data/MMT_' num2str(subj) '_' num2str(run) '.mat'])
 
-matCorrect = nan(size(trials.numSeq));
-
-for iTrial = 1:param.numTrials
-    for iNum = 1:param.numDig
-        if trials.responses(iTrial,iNum) == trials.numSeq(iTrial, iNum)
-            correct = 1;
-        else
-            correct = 0;
+matCorrect = nan(param.trialsPerBlock,param.numDig,param.numBlocks);
+currTrial = 1;
+for iBlock = 1:param.numBlocks
+    for iTrial = 1:param.trialsPerBlock
+        for iNum = 1:param.numDig
+            if trials.responses(currTrial,iNum) == trials.numSeq(iTrial, iNum)
+                correct = 1;
+            elseif trials.responses(currTrial,iNum) ~= trials.numSeq(iTrial, iNum)
+                correct = 0;
+            end
+            matCorrect(iTrial, iNum, iBlock) = correct;
         end
-        matCorrect(iTrial, iNum) = correct;
+        currTrial = currTrial + 1;
     end
 end
 
