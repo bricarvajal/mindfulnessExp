@@ -64,7 +64,7 @@ Screen('BlendFunction', window, 'GL_SRC_ALPHA', 'GL_ONE_MINUS_SRC_ALPHA');
 %% Texts
 % Reponse statement
 respText = 'Enter the sequence.\n Press ENTER/RETURN when done.';
-endText = 'All done, \n thank you for your participation.\n Press any key to exit.';
+endText = 'All done. Thank you for your participation.';
 retryText = ['You did not enter ' num2str(param.numDig) '.\n Please enter '...
     num2str(param.numDig)  ' digits.'];
 
@@ -190,6 +190,6 @@ save(['data/MMT_' num2str(subj) '_' num2str(run)], 'trials', 'param')
 DrawFormattedText(window, endText, 'center', 'center', black);
 Screen('Flip', window);
 PsychPortAudio('Close');
-KbStrokeWait;
+pause(3)
 sca;
 
