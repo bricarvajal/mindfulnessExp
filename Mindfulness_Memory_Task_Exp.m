@@ -74,7 +74,7 @@ Screen('TextFont', window, 'Arial');
 
 %% Welcome screen
 
-welcomeSecs = 5; %(s) How long the welcome screen is up. testing: 5 exp: 15
+welcomeSecs = 15; %(s) How long the welcome screen is up. testing: 5 exp: 15
 for n = 1:welcomeSecs
     welcomeText = ['Welcome to the experiment.\n Each trial you will be presented a sequence of numbers.\n When prompted, enter the sequence of numbers you were presented.\n The session will begin in ' num2str(welcomeSecs) ' seconds.'];
     DrawFormattedText(window, welcomeText, 'center', 'center', black);
