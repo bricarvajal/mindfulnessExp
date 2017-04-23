@@ -3,7 +3,7 @@ function Mindfulness_Memory_Task_Exp(subj, run)
 
 %% Initialization of Files
 load(['stimuli/MMT_Seq' num2str(run)])
-subjGroup = 'control'; %Options: 'experimental' 'control'
+subjGroup = 'experimental'; %Options: 'experimental' 'control'
 param.subjGroup = subjGroup;
 
 % Change subject's group here
@@ -66,12 +66,12 @@ retryText = ['You did not enter ' num2str(param.numDig) '.\n Please enter '...
     num2str(param.numDig)  ' digits.'];
 
 % Text size and font
-Screen('TextSize', window, 30);
+Screen('TextSize', window, 44);
 Screen('TextFont', window, 'Arial');
 
 %% Welcome screen
 
-welcomeSecs = 15; %(s) How long the welcome screen is up. testing: 5 exp: 15
+welcomeSecs = 5; %(s) How long the welcome screen is up. testing: 5 exp: 15
 for n = 1:welcomeSecs
     welcomeText = ['Welcome to the experiment.\n Each trial you will be presented a sequence of numbers.\n When prompted, enter the sequence of numbers you were presented.\n The session will begin in ' num2str(welcomeSecs) ' seconds.'];
     DrawFormattedText(window, welcomeText, 'center', 'center', black);
