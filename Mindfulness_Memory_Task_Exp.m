@@ -3,7 +3,7 @@ function Mindfulness_Memory_Task_Exp(subj, run)
 
 %% Initialization of Files
 load(['stimuli/MMT_Seq' num2str(run)])
-subjGroup = 'control'; %Options: 'experimental' 'control'
+subjGroup = 'experimental'; %Options: 'experimental' 'control'
 param.subjGroup = subjGroup;
 
 % Change subject's group here
